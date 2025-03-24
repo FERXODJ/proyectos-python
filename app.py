@@ -4,7 +4,7 @@ app = Flask(__name__)
 #rutas
 @app.route('/')
 def raiz():
-    return render_template('index.html')
+    return render_template('inicio.html')
 
 #ruta paa nosotros
 @app.route('/nosotros')
