@@ -60,7 +60,6 @@
 
       <div class="registro">
         <form action="#" method="POST" class="formulario_registro">
-            {% csrf_token %}
             <p class="titulo_registro">Create Account</p>
             <div class="input-container">
                 <i class="fas fa-user"></i>
@@ -132,7 +131,7 @@
                 <option value="analista">Analista</option>
             </select>
     
-          <a href="{% url 'registrar_usuario' %}"><button id="boton_singup">Sign Up</button></a>
+          <a href="#"><button id="boton_singup">Sign Up</button></a>
         </form>
     </div>
 
