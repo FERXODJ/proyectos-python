@@ -1,0 +1,464 @@
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #b370b0;
+}
+
+.circulo {
+  width: 50vh;
+  height: 47vh;
+  background-color: #bba0ca;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: left;
+  transform: translate(
+    -200px,
+    160px
+  ); /* Ajusta este valor según sea necesario */
+}
+
+.cuadrado {
+  width: 35vh;
+  height: 35vh;
+  background-color: #540d6e;
+  position: absolute;
+  top: -30px;
+  right: -170px;
+  display: flex;
+  justify-content: right;
+  transform: translate(0, -50px); /* Ajusta este valor según sea necesario */
+  transform: rotate(50deg);
+}
+
+.fondo {
+    width: 130vh;
+    height: 87vh;
+    background-color: rgb(255, 255, 255, 0.85);
+    margin: auto;
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio entre los divs */
+    align-items: center; /* Centra verticalmente */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+  }
+  
+  .registro, .inicio-sesion {
+    width: 63.5vh;
+    height: 85vh;
+    overflow: hidden;
+  }
+  
+  .registro {
+    border: 1px solid #96000000;
+    margin-right: 1vh;
+
+  }
+
+  .registro form{
+    width: 63.5vh;
+    height: 85vh;
+    
+  }
+
+  .formulario_registro{
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out;
+
+  }
+  
+  .inicio-sesion {
+    border: 1px solid #3500f300;
+    margin-left: 1vh;
+    
+  }
+
+  .formulario_sesion{
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .formulario_sesion {
+    transition: transform 0.60s ease-in-out; /* Añade la transición */
+}
+
+  .inicio-sesion form{
+    width: 63.5vh;
+    height: 85vh;
+    
+  }
+
+  .fondo.toggle .formulario_sesion{
+    transform: translateX(120%);
+  }
+  .fondo.toggle .formulario_registro{
+    transform: translateX(0);
+  }
+
+  .fondo.toggle .welcome_singin{
+    transform: translateX(0%);
+  }
+
+  .fondo.toggle .welcome_singup{
+    transform: translateX(100%);
+  }
+
+  
+
+
+.container_welcome {
+  width: 47vh;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  background-color: #540d6e;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0px 15px 15px 0px;
+}
+
+.logo {
+  width: 25vw;
+  height: 20vw;
+  position: relative;
+  top: -32vh;
+  left: 0;
+  display: flex;
+  margin: auto;
+}
+
+.bienvenida {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 70;
+  font-style: italic;
+  font-size: 5vw;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-5vh);
+}
+
+.texto1 {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 70;
+  font-style: italic;
+  font-size: 2.5vw;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-2vh);
+}
+
+.boton_singin01 {
+  width: 22vh;
+  height: 6vh;
+  background-color: #807c7c00;
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 40;
+  font-style: normal;
+  font-size: 1.5vw;
+  border: 0.3vh solid #ffffff;
+  border-radius: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transform: translateY(13vh);
+  cursor: pointer;
+}
+
+.cuadradito {
+  width: 3vh;
+  height: 3vh;
+  background-color: #d9d9d975;
+  position: absolute;
+  top: 15vh;
+  right: 11vh;
+  transform: rotate(40deg);
+}
+
+.cuadradito1 {
+  width: 3vh;
+  height: 3vh;
+  background-color: #d9d9d975;
+  position: absolute;
+  top: 50vh;
+  left: 4vh;
+  transform: rotate(40deg);
+}
+
+.rectangulito {
+  width: 4.5vh;
+  height: 2vh;
+  background-color: #d9d9d975;
+  position: absolute;
+  top: 67vh;
+  right: 2vh;
+}
+
+.rectangulito1 {
+  width: 4vh;
+  height: 2vh;
+  background-color: #d9d9d975;
+  position: absolute;
+  top: 72vh;
+  left: 5vh;
+  transform: rotate(40deg);
+}
+
+.titulo_registro {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 70;
+  font-style: italic;
+  font-size: 5vw;
+  color: #540d6e;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Asegura que el texto ocupe todo el ancho disponible*/ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 10px;
+  top: 15vh;
+  left: 10%;
+}
+
+.input-container i {
+  position: absolute;
+  left: 1.5vh;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #540d6e; /* Ajusta el color según sea necesario */
+}
+
+.input_registro {
+  width: 50vh;
+  padding: 2vh 2vh 2vh 5vh; /* Ajusta el padding para dejar espacio para el icono*/
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-family: "Finlandica", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+
+.selecionador_cargo {
+  position: absolute;
+  display: flex;
+  left: 10%;
+  transform: translateY(15.2vh);
+  color: #746f6f;
+  padding-left: 15px;
+}
+
+.boton_singup {
+  width: 22vh;
+  height: 6vh;
+  background-color: #540d6e;
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 40;
+  font-style: normal;
+  font-size: 1.5vw;
+  border: none;
+  border-radius: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transform: translate(0vh, 28vh);
+  cursor: pointer;
+}
+
+
+.titulo_sesion{
+
+    font-family: "Amaranth", sans-serif;
+    font-weight: 70;
+    font-style: italic;
+    font-size: 5vw;
+    color: #540d6e;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 15vh;
+    left: 0%;
+    width: 100%; /* Asegura que el texto ocupe todo el ancho disponible*/ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container2{
+  position: relative;
+  margin-bottom: 40px;
+  top: 27vh;
+  left: 10%;
+}
+
+.input-container2 i {
+    position: absolute;
+    left: 1.5vh;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #540d6e; /* Ajusta el color según sea necesario */
+}
+
+.olvidoclave{
+    position: relative;
+    display: flex;
+    transform: translate(-1vh, 26vh);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: "Finlandica", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: 20px;
+    text-decoration: none;
+    color: #534E4E;
+}
+
+.olvidoclave:hover{
+    color: #540d6e;
+}
+
+.boton_singin{
+  width: 22vh;
+  height: 6vh;
+  background-color: #540d6e;
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 40;
+  font-style: normal;
+  font-size: 1.5vw;
+  border: none;
+  border-radius: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transform: translate(-1vh, 35vh);
+  cursor: pointer;
+}
+
+.container_welcome{
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+ 
+}
+
+.container_welcome .welcome{
+  border: solid 1px #dd090900;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+  padding: 0 50px;
+  left: 2vh;
+  transition: transform 0.5s ease-in-out;
+  /*transform: translateX(15px);*/
+}
+
+.container_welcome .welcome2{
+  left: 3vh;
+}
+
+.fondo.toggle .container_welcome{
+  transform: translateX(-177%);
+  border-radius: 15px 0 0 15px;
+}
+
+.welcome_singin{
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.welcome_singup {
+  transition: transform 0.5s ease-in-out; /* Añade la transición aquí */
+}
+
+.container_welcome p{
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 20;
+  font-style: normal;
+  font-size: 2.5vw;
+  transform: translateY(-12vh);
+  text-align: center;
+}
+
+.container_welcome h3{
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 45;
+  font-style: normal;
+  font-size: 4.5vw;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateY(5vh);
+}
+
+.boton_1, .boton_2 {
+  width: 22vh;
+  height: 6vh;
+  background-color: transparent; /* Quita el fondo */
+  border: 1px solid #ffffff; /* Coloca un borde blanco */
+  color: #ffffff;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 40;
+  font-style: normal;
+  font-size: 1.5vw;
+  border-radius: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(5.2vh, -18vh);
+}
+
+.boton_2{
+  transform: translate(3vh, -18vh);
+}
+
+
+
+
