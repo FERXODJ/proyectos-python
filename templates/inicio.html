@@ -29,8 +29,19 @@
       <!-- Inicio de Sesion -->
 
       <div class="inicio-sesion">
-        <form action="#" method="POST" class="formulario_sesion">
+        <form action="{{ url_for('login') }}" method="POST" class="formulario_sesion">
           <p class="titulo_sesion">Sign In to Bitacora</p>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
           <div class="input-container2">
             <i class="fas fa-user"></i>
             <input
@@ -61,8 +72,19 @@
          <!-- Registro -->
 
          <div class="registro">
-            <form action="#" method="POST" class="formulario_registro">
+            <form action="{{ url_for('registro') }}" method="POST" class="formulario_registro">
                 <p class="titulo_registro">Create Account</p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
                 <div class="input-container">
                     <i class="fas fa-user"></i>
                     <input

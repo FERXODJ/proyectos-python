@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,16 +21,27 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-  </head>
-  <body>
+</head>
+<body>
     <div class="circulo"></div>
     <div class="cuadrado"></div>
     <div class="fondo">
       <!-- Inicio de Sesion -->
 
       <div class="inicio-sesion">
-        <form action="#" method="POST" class="formulario_sesion">
+        <form action="{{ url_for('login') }}" method="POST" class="formulario_sesion">
           <p class="titulo_sesion">Sign In to Bitacora</p>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
           <div class="input-container2">
             <i class="fas fa-user"></i>
             <input
@@ -56,103 +68,115 @@
           <input type="submit" value="Sing In" class="boton_singin" />
         </form>
       </div>
-      <!-- Registro -->
 
-      <div class="registro">
-        <form action="#" method="POST" class="formulario_registro">
-            <p class="titulo_registro">Create Account</p>
-            <div class="input-container">
-                <i class="fas fa-user"></i>
-                <input
-                    type="text"
-                    name="nombre"
-                    id="nombre"
-                    placeholder="Nombre"
-                    class="input_registro"
-                />
-            </div>
-            <div class="input-container">
-                <i class="fas fa-user"></i>
-                <input
-                    type="text"
-                    name="apellido"
-                    id="apellido"
-                    placeholder="Apellido"
-                    class="input_registro"
-                />
-            </div>
-            <div class="input-container">
-                <i class="fas fa-envelope"></i>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    class="input_registro"
-                />
-            </div>
-            <div class="input-container">
-                <i class="fas fa-user"></i>
-                <input
-                    type="text"
-                    name="usuario"
-                    id="usuario"
-                    placeholder="Usuario"
-                    class="input_registro"
-                />
-            </div>
-            <div class="input-container">
-                <i class="fas fa-lock"></i>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    class="input_registro"
-                />
-            </div>
-            <div class="input-container">
-                <i class="fas fa-lock"></i>
-                <input
-                    type="password"
-                    name="password2"
-                    id="password2"
-                    placeholder="Confirm Password"
-                    class="input_registro"
-                />
-            </div>
-    
-            <select
-                name="cargo"
-                id="cargo"
-                class="input_registro selecionador_cargo"
-            >
-                <option value="" disabled selected>Seleccione un cargo...</option>
-                <option value="analista">Analista</option>
-            </select>
-    
-          <a href="#"><button id="boton_singup">Sign Up</button></a>
-        </form>
-    </div>
+         <!-- Registro -->
 
-      <div class="container_welcome">
-        <div class="cuadradito"></div>
-          <div class="cuadradito1"></div>
-          <div class="rectangulito"></div>
-          <div class="rectangulito1"></div>
-          <img src="/static/images/LOGOHOME.svg" alt="LOGOHOME" class="logo" />
-        <div class="welcome_singup welcome">
-          <h3>Hello, Friend!</h3>
-          <p>Ingresa tu cuenta para <br> Iniciar con el Proceso</p>
-          <button class="boton_1" id="btn_singup">Sing Up</button>
+         <div class="registro">
+            <form action="{{ url_for('registro') }}" method="POST" class="formulario_registro">
+                <p class="titulo_registro">Create Account</p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input
+                        type="text"
+                        name="nombre"
+                        id="nombre"
+                        placeholder="Nombre"
+                        class="input_registro"
+                    />
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input
+                        type="text"
+                        name="apellido"
+                        id="apellido"
+                        placeholder="Apellido"
+                        class="input_registro"
+                    />
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        class="input_registro"
+                    />
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input
+                        type="text"
+                        name="usuario"
+                        id="usuario"
+                        placeholder="Usuario"
+                        class="input_registro"
+                    />
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        class="input_registro"
+                    />
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input
+                        type="password"
+                        name="password2"
+                        id="password2"
+                        placeholder="Confirm Password"
+                        class="input_registro"
+                    />
+                </div>
+        
+                <select
+                    name="cargo"
+                    id="cargo"
+                    class="input_registro selecionador_cargo"
+                >
+                    <option value="" disabled selected>Seleccione un cargo...</option>
+                    <option value="analista">Analista</option>
+                </select>
+        
+                <input type="submit" value="Sign Up" id="boton_singup" class="boton_singin">
+            </form>
         </div>
-        <div class="welcome_singin welcome welcome2">
-          <h3>Welcome!</h3>
-          <p id="texto01">Registra los Ticket <br> de manera mas Fácil</p>
-          <button class="boton_2" id="btn_singin">Sing In</button>
+    
+          <div class="container_welcome">
+            <div class="cuadradito"></div>
+              <div class="cuadradito1"></div>
+              <div class="rectangulito"></div>
+              <div class="rectangulito1"></div>
+              <img src="/static/img/LOGOHOME.svg" alt="LOGOHOME" class="logo" />
+            <div class="welcome_singup welcome">
+              <h3>Hello, Friend!</h3>
+              <p>Ingresa tu cuenta para <br> Iniciar con el Proceso</p>
+              <button class="boton_1" id="btn_singup">Sing Up</button>
+            </div>
+            <div class="welcome_singin welcome welcome2">
+              <h3>Welcome!</h3>
+              <p id="texto01">Registra los Ticket <br> de manera mas Fácil</p>
+              <button class="boton_2" id="btn_singin">Sing In</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </body>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
 </html>
