@@ -281,7 +281,7 @@ body {
   padding-left: 15px;
 }
 
-.boton_singup {
+#boton_singup {
   width: 22vh;
   height: 6vh;
   background-color: #540d6e;
