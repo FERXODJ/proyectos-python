@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 #rutas
@@ -12,5 +13,6 @@ def nosotros():
     return render_template('nosotros.html')
 
 #Bloque de Prueba
+
 if __name__ == '__main__':
     app.run(debug=True)
