@@ -26,7 +26,7 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
         apellido: document.getElementById('apellido').value,
         email: document.getElementById('email').value,
         usuario: document.getElementById('usuario_registro').value,
-    password: document.getElementById('password_registro').value,
+        password: document.getElementById('password_registro').value,
         password2: document.getElementById('password2').value,
         cargo: document.getElementById('cargo').value
     };
@@ -41,13 +41,19 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
+        const errorContainer = document.getElementById('errorContainer');
         if (!data.success) {
-            const errorContainer = document.getElementById('errorContainer');
             errorContainer.textContent = data.message;
             errorContainer.style.display = 'block';
         } else {
-            // Redirección o acción exitosa
-            window.location.href = '/';
+            errorContainer.style.color = 'green';
+            errorContainer.textContent = data.message;
+            errorContainer.style.display = 'block';
+            
+            // Redirección después de 3 segundos
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 3000);
         }
     })
     .catch(error => {

@@ -472,6 +472,12 @@ body {
 
 }
 
+.error-message[style*="green"] {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
 
 
 
