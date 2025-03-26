@@ -1,3 +1,5 @@
+//Manejo de la animación de los formularios de inicio de sesión y registro
+
 const fondo = document.querySelector('.fondo');
 const btnSingIn = document.getElementById('btn_singin');
 const btnSingUp = document.getElementById('btn_singup');
@@ -17,6 +19,8 @@ if(document.querySelector('.registro .alert')) {
     document.querySelector('.registro').style.display = 'block';
     document.querySelector('.inicio-sesion').style.display = 'none';
 }
+
+//Manera de registro
 
 document.getElementById('registroForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -54,6 +58,37 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
             setTimeout(() => {
                 window.location.href = '/';
             }, 3000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+// Manejar login
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const loginData = {
+        usuario: document.getElementById('usuario').value,
+        password: document.getElementById('password').value
+    };
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        const errorContainer = document.getElementById('loginError');
+        if (!data.success) {
+            errorContainer.textContent = data.message;
+            errorContainer.style.display = 'block';
+        } else {
+            window.location.href = data.redirect;
         }
     })
     .catch(error => {

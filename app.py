@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, jso
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 CORS(app)
@@ -57,6 +58,24 @@ def raiz():
     return render_template('index.html')
 
 # ... resto del código ...
+
+# Ruta para el login (nueva)
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    usuario = data.get('usuario')
+    password = data.get('password')
+
+    user = Usuario.query.filter_by(usuario=usuario).first()
+
+    if not user:
+        return jsonify({'success': False, 'message': 'Usuario no existe'})
+    
+    if not check_password_hash(user.password, password):
+        return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
+
+    return jsonify({'success': True, 'redirect': url_for('nosotros')})
+
 #ruta paa nosotros
 @app.route('/nosotros')
 def nosotros():

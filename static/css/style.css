@@ -478,6 +478,11 @@ body {
   color: #155724;
 }
 
+#loginError {
+  margin: 15px 0;
+  padding: 10px;
+}
+
 
 
 

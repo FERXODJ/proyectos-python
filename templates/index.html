@@ -29,8 +29,10 @@
       <!-- Inicio de Sesion -->
 
       <div class="inicio-sesion">
-        <form action="#" method="POST" class="formulario_sesion">
+        <form id="loginForm" class="formulario_sesion">
           <p class="titulo_sesion">Sign In to Bitacora</p>
+
+          <div id="loginError" class="error-message" style="display: none;"></div>
 
           <div class="input-container2">
             <i class="fas fa-user"></i>
@@ -55,7 +57,7 @@
 
           <a href="#" class="olvidoclave">Forgot your password?</a>
 
-          <input type="submit" value="Sing In" class="boton_singin" />
+          <button type="submit" class="boton_singin">Sign In</button>
         </form>
       </div>
 
