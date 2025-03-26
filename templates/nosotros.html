@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nosotros | Bitácora WOW</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <h1>Hola a Nosotros</h1>
-    
+<body class="pagina-nosotros">
+    <div class="sidebar">
+        <div class="user-info">
+            <h2>Hola, <span id="nombreUsuario">{{ usuario }}</span></h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="#" class="nav-link">Agregar Ticket</a></li>
+                <li><a href="#" class="nav-link">Lista de Tickets</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="contenido-principal">
+        <h1>Panel Principal</h1>
+        <p>Bienvenido al sistema de gestión de tickets</p>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+from flask import session
 
 app = Flask(__name__)
 CORS(app)
@@ -60,6 +61,7 @@ def raiz():
 # ... resto del código ...
 
 # Ruta para el login (nueva)
+
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -73,13 +75,21 @@ def login():
     
     if not check_password_hash(user.password, password):
         return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
+    
+    # Guardar usuario en sesión
+    session['usuario_actual'] = user.usuario
+    session['nombre_completo'] = f"{user.nombre} {user.apellido}"
 
     return jsonify({'success': True, 'redirect': url_for('nosotros')})
 
-#ruta paa nosotros
+# Modifica la ruta de nosotros
 @app.route('/nosotros')
 def nosotros():
-    return render_template('nosotros.html')
+    if 'usuario_actual' not in session:
+        return redirect(url_for('raiz'))
+        
+    return render_template('nosotros.html', 
+                         usuario=session['nombre_completo'])
 
 #Bloque de Prueba
 

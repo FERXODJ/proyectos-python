@@ -483,6 +483,55 @@ body {
   padding: 10px;
 }
 
+/* Estilos para página nosotros */
+.pagina-nosotros {
+  background-color: #e6e6fa; /* Morado claro */
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  background-color: #4b0082; /* Morado oscuro */
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.user-info {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  transition: all 0.3s;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  background-color: #5b1a8e;
+}
+
+.nav-link.active {
+  background-color: #7c43a3;
+  font-weight: bold;
+}
+
+.contenido-principal {
+  flex: 1;
+  padding: 30px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 
 
 
