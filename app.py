@@ -40,3 +40,8 @@ def nosotros():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+def vercel_handler(request):
+    with app.app_context():
+        response = app.full_dispatch_request()()
+        return response
