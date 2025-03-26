@@ -95,3 +95,20 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         console.error('Error:', error);
     });
 });
+
+// Resaltar solo el enlace activo
+function actualizarEnlaceActivo() {
+    const enlaces = document.querySelectorAll('.nav-link');
+    const rutaActual = window.location.pathname;
+    
+    enlaces.forEach(enlace => {
+        enlace.classList.remove('active');
+        if (enlace.getAttribute('href') === rutaActual) {
+            enlace.classList.add('active');
+        }
+    });
+}
+
+// Ejecutar al cargar y después de navegar
+document.addEventListener('DOMContentLoaded', actualizarEnlaceActivo);
+window.addEventListener('popstate', actualizarEnlaceActivo);

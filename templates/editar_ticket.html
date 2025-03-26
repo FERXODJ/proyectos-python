@@ -1,0 +1,37 @@
+<!-- Crea un nuevo archivo en templates/editar_ticket.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="pagina-nosotros">
+    <div class="sidebar">
+        <!-- Mismo sidebar que otras páginas -->
+    </div>
+
+    <main class="contenido-principal">
+        <h1>Editar Ticket {{ ticket.numero }}</h1>
+        <form method="POST">
+            <div class="input-container">
+                <input type="text" name="numero" value="{{ ticket.numero }}" required>
+            </div>
+            <div class="input-container">
+                <input type="text" name="analista" value="{{ ticket.analista }}" required>
+            </div>
+            <div class="input-container">
+                <select name="status" required>
+                    <option value="{{ ticket.status }}" selected>{{ ticket.status }}</option>
+                    <option value="Abierto">Abierto</option>
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Cerrado">Cerrado</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <input type="text" name="cliente" value="{{ ticket.cliente }}" required>
+            </div>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </main>
+</body>
+</html>

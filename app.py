@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
-from flask import session
+from flask import session, flash
 
 app = Flask(__name__)
 CORS(app)
@@ -20,6 +20,16 @@ class Usuario(db.Model):
     usuario = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(200))
     cargo = db.Column(db.String(50))
+
+# Crando base de datos para los tickets
+
+class Ticket(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    numero = db.Column(db.String(20), unique=True)
+    analista = db.Column(db.String(50))
+    status = db.Column(db.String(20))
+    cliente = db.Column(db.String(50))
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
 
 # Crear tablas al iniciar
 with app.app_context():
@@ -91,13 +101,91 @@ def nosotros():
     return render_template('nosotros.html', 
                          usuario=session['nombre_completo'])
 
-#Bloque de Prueba
+# Nueva ruta para cerrar sesión
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/logout')
+def logout():
+    session.pop('usuario_actual', None)
+    session.pop('nombre_completo', None)
+    return redirect(url_for('raiz'))
 
-# Para compatibilidad con Vercel
-def vercel_handler(request):
-    with app.app_context():
-        response = app.full_dispatch_request()()
-        return response
+# Nueva ruta para agregar tickets
+
+@app.route('/agregar-ticket', methods=['GET', 'POST'])
+def agregar_ticket():
+    if 'usuario_actual' not in session:
+        return redirect(url_for('raiz'))
+        
+    nombre_usuario = session.get('nombre_completo', 'Invitado')
+    
+    if request.method == 'POST':
+        try:
+            nuevo_ticket = Ticket(
+                numero=request.form['numero'],
+                analista=request.form['analista'],
+                status=request.form['status'],
+                cliente=request.form['cliente'],
+                usuario_id=Usuario.query.filter_by(usuario=session['usuario_actual']).first().id
+            )
+            db.session.add(nuevo_ticket)
+            db.session.commit()
+            flash('Ticket registrado exitosamente!', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error al guardar el ticket: {str(e)}', 'error')
+        return redirect(url_for('lista_tickets'))
+        
+    return render_template('agregar_ticket.html', usuario=nombre_usuario)
+
+# Nueva ruta para listar tickets
+
+@app.route('/lista-tickets')
+def lista_tickets():
+    if 'usuario_actual' not in session:
+        return redirect(url_for('raiz'))
+    # Obtener el nombre del usuario y los tickets
+    nombre_usuario = session.get('nombre_completo', 'Invitado')
+    tickets = Ticket.query.all()
+    return render_template('lista_tickets.html', usuario=nombre_usuario, tickets=tickets)
+
+# Ruta para editar tickets
+@app.route('/editar-ticket/<int:id>', methods=['GET', 'POST'])
+def editar_ticket(id):
+    if 'usuario_actual' not in session:
+        return redirect(url_for('raiz'))
+    
+    ticket = Ticket.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        try:
+            ticket.numero = request.form['numero']
+            ticket.analista = request.form['analista']
+            ticket.status = request.form['status']
+            ticket.cliente = request.form['cliente']
+            db.session.commit()
+            flash('Ticket actualizado correctamente', 'success')
+            return redirect(url_for('lista_tickets'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error al actualizar: {str(e)}', 'error')
+    
+    return render_template('editar_ticket.html', 
+                        usuario=session['nombre_completo'],
+                        ticket=ticket)
+
+# Ruta para eliminar tickets
+@app.route('/eliminar-ticket/<int:id>', methods=['POST'])
+def eliminar_ticket(id):
+    if 'usuario_actual' not in session:
+        return redirect(url_for('raiz'))
+    
+    ticket = Ticket.query.get_or_404(id)
+    try:
+        db.session.delete(ticket)
+        db.session.commit()
+        flash('Ticket eliminado exitosamente', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error al eliminar: {str(e)}', 'error')
+    
+    return redirect(url_for('lista_tickets'))

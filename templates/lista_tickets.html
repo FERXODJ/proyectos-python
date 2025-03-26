@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tickets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="pagina-nosotros">
+    <div class="sidebar">
+        <div class="user-info">
+            <h2>Hola, <span id="nombreUsuario">{{ usuario }}</span></h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/nosotros" class="nav-link">Home</a></li> 
+                <li><a href="/agregar-ticket" class="nav-link active">Agregar Ticket</a></li>
+                <li><a href="/lista-tickets" class="nav-link">Lista de Tickets</a></li>
+                <li><a href="/logout" class="nav-link logout-btn">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+    <main class="contenido-principal">
+        <h1>Lista de Tickets</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Analista</th>
+                    <th>Status</th>
+                    <th>Cliente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.numero }}</td>
+                    <td>{{ ticket.analista }}</td>
+                    <td>{{ ticket.status }}</td>
+                    <td>{{ ticket.cliente }}</td>
+                    <td class="acciones">
+                        <a href="/editar-ticket/{{ ticket.id }}" class="btn-editar">✏️</a>
+                        <form action="/eliminar-ticket/{{ ticket.id }}" method="POST" class="form-eliminar">
+                            <button type="submit" class="btn-eliminar">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>
