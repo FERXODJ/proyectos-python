@@ -62,7 +62,17 @@
          <!-- Registro -->
 
          <div class="registro">
-            <form action="#" method="POST" class="formulario_registro">
+          <form id="registroForm" class="formulario_registro">
+
+              {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="error-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
                 <p class="titulo_registro">Create Account</p>
         
                 <div class="input-container">
@@ -100,7 +110,7 @@
                     <input
                         type="text"
                         name="usuario"
-                        id="usuario"
+                        id="usuario_registro"
                         placeholder="Usuario"
                         class="input_registro"
                     />
@@ -110,7 +120,7 @@
                     <input
                         type="password"
                         name="password"
-                        id="password"
+                        id="password_registro"
                         placeholder="Password"
                         class="input_registro"
                     />
@@ -134,8 +144,10 @@
                     <option value="" disabled selected>Seleccione un cargo...</option>
                     <option value="analista">Analista</option>
                 </select>
+
+                <div id="errorContainer" class="error-message" style="display: none;"></div>
         
-              <a href="#"><button id="boton_singup">Sign Up</button></a>
+                <button type="submit" id="boton_singup">Sign Up</button>
             </form>
         </div>
     
