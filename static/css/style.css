@@ -579,23 +579,60 @@ tr:hover {
   border: 1px solid #f5c6cb;
 }
 
-.titulo_agregar_ticket {
-  font-family: "Amaranth", sans-serif;
-  font-weight: 70;
-  font-style: italic;
-  font-size: 5vw;
-  color: #540d6e;
+
+/* Estilos para el formulario de agregar ticket */
+.agregar-ticket {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.titulo-agregar-ticket {
   text-align: center;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: -10vh; /* Ajusta la posición vertical según sea necesario */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%; /* Asegura que el texto ocupe todo el ancho disponible*/ 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-agregar-ticket .input-container-agregar-ticket {
+  margin-bottom: 15px;
+}
+
+.form-agregar-ticket .input-container-agregar-ticket input,
+.form-agregar-ticket .input-container-agregar-ticket select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-agregar-ticket .input-container-agregar-ticket input:focus,
+.form-agregar-ticket .input-container-agregar-ticket select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-agregar-ticket {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #540d6e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar-ticket:hover {
+  background-color: #8c32ad;
 }
 
 
