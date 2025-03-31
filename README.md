@@ -14,4 +14,11 @@
 
 # Correr ProyectO (flask run)
 
+# Para que el repositorio se convine
+
+# Primero (git status)
+
+# Segundo (git fetch origin)
+
+# Tercero (git pull origin Desarrollo-5)
 
